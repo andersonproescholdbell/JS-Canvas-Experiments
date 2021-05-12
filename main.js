@@ -11,11 +11,12 @@ function drawCircle(ctx, x, y, r, color) {
 }
 
 async function main() {   
+    document.body.style.margin = 0;
     document.documentElement.style.overflow = "hidden";
 
     var c = document.getElementById("can");
-    c.width = document.documentElement.clientWidth - 16;
-    c.height = document.documentElement.clientHeight - 16;
+    c.width = document.documentElement.clientWidth;
+    c.height = document.documentElement.clientHeight;
     c.style.backgroundColor = "slategrey";
 
     var ctx = c.getContext("2d");  
@@ -30,15 +31,15 @@ async function main() {
         var moveY = dist*Math.sin(rads*Math.PI);
 
         var speed = 1;
-        var size = 1;
+        var radius = 1;
         while (x+moveX*speed > 0 && x+moveX*speed < c.width && y+moveY*speed > 0 && y+moveY*speed < c.height) {
             x += moveX*speed;
             y += moveY*speed;
             ctx.clearRect(0, 0, c.width, c.height);
-            drawCircle(ctx, x, y, size, "black");
-            await sleep(5);
+            drawCircle(ctx, x, y, radius, "black");
+            await sleep(10);
             speed += 0.05;
-            size += 0.2;
+            radius += 0.2;
         }
     }
 }
